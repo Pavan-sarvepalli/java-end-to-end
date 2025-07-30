@@ -58,7 +58,7 @@ pipeline {
             steps {
                 script {
                     withCredentials([string(credentialsId: 'dockerhubpassword', variable: 'dockerhubpassword')]) {
-                        sh "docker login -u pavansarvepalli -p ${dockerhubpassword}"
+                        sh "docker login -u pavansarvepalli -p ${dockerpassword}"
                     }
                     sh "docker push ${IMAGE_NAME}:${version}"
                     echo "Image pushed to Docker Hub"
@@ -75,11 +75,11 @@ pipeline {
                             git config user.name "pavan-sarvepalli"
                             git config user.email "sarvepallipvan55@gmail.com"
 
-                           sed -i "s|javaapp:.*|javaapp:${env.version}|g" deploymentfiles/deployment.yml
+                           sed -i "s|javaapp:.*|javaapp:${version}|g" deploymentfiles/deployment.yml
 
                             git add deploymentfiles/deployment.yml
                             git commit -m "update deployment image version ${version}" || echo "No changes to commit"
-                            git push https://${githubpassword}@github.com/${GIT_USERNAME}/${GIT_REPO_NAME}.git HEAD:main
+                            git push https://${gitpassword}@github.com/${GIT_USERNAME}/${GIT_REPO_NAME}.git HEAD:main
                         """
                     }
                 }
