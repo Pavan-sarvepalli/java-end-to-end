@@ -1,6 +1,6 @@
 ##artifact build stage
 FROM maven AS buildstage
-RUN mkdir /var/src/app
+RUN mkdir -p /var/src/app
 WORKDIR /var/src/app
 COPY . .
 RUN mvn clean install    ## artifact -- .war
