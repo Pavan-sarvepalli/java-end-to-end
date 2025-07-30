@@ -57,7 +57,7 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    withCredentials([string(credentialsId: 'dockerhubpassword', variable: 'dockerhubpassword')]) {
+                    withCredentials([string(credentialsId: 'dockerpassword', variable: 'dockerpassword')]) {
                         sh "docker login -u pavansarvepalli -p ${dockerpassword}"
                     }
                     sh "docker push ${IMAGE_NAME}:${version}"
@@ -70,7 +70,7 @@ pipeline {
             steps {
                 echo "Updating deployment file in Git"
                 script {
-                    withCredentials([string(credentialsId: 'githubpassword', variable: 'githubpassword')]) {
+                    withCredentials([string(credentialsId: 'gitpassword', variable: 'gitpassword')]) {
                         sh """
                             git config user.name "pavan-sarvepalli"
                             git config user.email "sarvepallipvan55@gmail.com"
