@@ -5,7 +5,7 @@ pipeline {
         IMAGE_NAME = "pavansarvepalli0/javaapp"
         GIT_REPO_NAME = "java-end-to-end"
         GIT_USERNAME = "pavan-sarvepalli"
-        version = "v.1.0${BUILD_NUMBER}"
+        version = "v.1.${BUILD_NUMBER}"
     }
     tools {
            maven 'maven3'
