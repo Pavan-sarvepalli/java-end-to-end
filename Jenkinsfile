@@ -58,7 +58,7 @@ pipeline {
             steps {
                 script {
                     withCredentials([string(credentialsId: 'dockerpassword', variable: 'dockerpassword')]) {
-                        sh "docker login -u pavansarvepalli -p ${dockerpassword}"
+                        sh "docker login -u pavansarvepalli0 -p ${dockerpassword}"
                     }
                     sh "docker push ${IMAGE_NAME}:${version}"
                     echo "Image pushed to Docker Hub"
